@@ -1,6 +1,8 @@
 package ibf2022.paf.assessment.server.services;
 
-// TODO: Task 7
+import org.springframework.stereotype.Service;
 
+// TODO: Task 7
+@Service
 public class TodoService {
 }

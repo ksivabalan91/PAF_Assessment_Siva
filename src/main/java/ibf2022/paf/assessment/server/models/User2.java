@@ -1,20 +1,14 @@
 package ibf2022.paf.assessment.server.models;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// TODO: Task 4
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Task {
-    private int taskId;
+public class User2 {
     private String userId;
-    private String description;
-    private int priority;    
-    private Date dueDate;
+	private String username;
+	private String fullname; 
 }
