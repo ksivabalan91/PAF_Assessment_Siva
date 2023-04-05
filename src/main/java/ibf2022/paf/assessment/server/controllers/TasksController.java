@@ -5,18 +5,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import ibf2022.paf.assessment.server.services.TodoService;
 
 // TODO: Task 4, Task 8
 
-@RestController
+@Controller
 public class TasksController {
     @Autowired
     TodoService todoSvc;
@@ -31,14 +31,18 @@ public class TasksController {
         logger.info(">>> Running upsertTask service");
         int rows = todoSvc.upsertTask(form);
         logger.info(">>> upsertTask complete, %d rows inserted".formatted(rows));
+        
+        ModelAndView mav = new ModelAndView();
 
-        // model.addAttribute("taskCount", rows);
-        // model.addAttribute("username", form.getFirst("username"));
-
-        ModelAndView mav = new ModelAndView("result");
-        mav.addObject("taskCount", rows);
-        mav.addObject("username", form.getFirst("username"));
-        mav.setStatus(HttpStatusCode.valueOf(200));
+        if(rows>0){
+            mav.setViewName("result.html");
+            mav.addObject("taskCount", rows);
+            mav.addObject("username", form.getFirst("username"));
+            mav.setStatus(HttpStatusCode.valueOf(200));
+        } else{
+            mav.setViewName("error.html");
+            mav.setStatus(HttpStatusCode.valueOf(500));
+        }
         
         return mav;
     }
