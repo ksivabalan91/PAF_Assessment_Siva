@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Task {
     private int taskId;
     private String userId;
-    private String description;
+    private String taskDescription;
     private int priority;    
     private Date dueDate;
 }

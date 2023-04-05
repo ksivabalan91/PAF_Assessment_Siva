@@ -6,6 +6,6 @@ create table task(
     priority			tinyint,
     due_date			date,
     constraint	task_id_pk 	primary key (task_id),
-    constraint 	chk_priority check(priority between 0 and 4),    
+    constraint 	chk_priority check(priority between 1 and 3),    
     constraint 	user_id_fk	foreign key (user_id)	references users(user_id)
 );
