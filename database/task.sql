@@ -1,4 +1,4 @@
-use bgg;
+-- use bgg;
 create table task(
 	task_id				int not null auto_increment,
     user_id				char(8),
